@@ -32,13 +32,13 @@ const checkDraw = () => {
 };
 
 const showWinner = (winner) => {
-    msg.textContent = `${winner} Victory!`;
+    msg.textContent = `${winner}'s Victory!`;
     msgContainer.classList.add("show");
     gameActive = false;
 };
 
 const showDraw = () => {
-    msg.textContent = "Draw!";
+    msg.textContent = "Draw!-reTry";
     msgContainer.classList.add("show");
     gameActive = false;
 };
