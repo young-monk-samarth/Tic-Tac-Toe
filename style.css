@@ -71,13 +71,40 @@
         50% { opacity: 0.2; }
     }
 
-    h1 {
-        color: #E2F1E7;
-        font-size: 3rem;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1), 0 0 10px #112A46, 0 0 30px #112A46;
-        margin-bottom: 2rem;
-        animation: slideInOut 4s ease-in-out infinite;
+    @keyframes grainMovement {
+    0% {
+        opacity: 0;
     }
+    50% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes slideInOut {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    50% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+}
+
+h1 {
+    color: #E2F1E7;
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1), 0 0 10px #112A46, 0 0 30px #112A46;
+    margin-bottom: 2rem;
+    animation: slideInOut 4s ease-in-out infinite;
+}
 
     .container {
         flex-grow: 1;
