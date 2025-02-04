@@ -4,7 +4,6 @@
     box-sizing: border-box;
 }
 
-
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #E2F1E7, #8DA4EA, #97ACF7, #E2F1E7);
@@ -13,14 +12,16 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem;
+    padding: 2rem 1rem; /* Reduced side padding for mobile */
     animation: gradientShift 10s ease-in-out infinite alternate, waveEffect 4s ease-in-out infinite;
     filter: brightness(1) saturate(3);
     position: relative;
     overflow: hidden;
+    overscroll-behavior: none;
 }
 
-/* neat effect */
+
+/* All existing animations and effects remain unchanged */
 @keyframes gradientShift {
     0% {
         background-position: 0% 50%;
@@ -44,7 +45,6 @@ body {
     }
 }
 
-/* Simulate wave effect */
 @keyframes waveEffect {
     0% {
         transform: translateY(-6px) translateX(-4px);
@@ -57,7 +57,6 @@ body {
     }
 }
 
-/* Shadows & highlights */
 body::before {
     content: "";
     position: absolute;
@@ -71,7 +70,6 @@ body::before {
     z-index: -1;
 }
 
-/* Color blending effect */
 body::after {
     content: "";
     position: absolute;
@@ -85,7 +83,6 @@ body::after {
     z-index: -2;
 }
 
-/* Optional: Add grain effect */
 .grain {
     position: absolute;
     top: 0;
@@ -99,17 +96,10 @@ body::after {
     z-index: -3;
 }
 
-/* Grain animation */
 @keyframes grainMovement {
-    0% {
-        opacity: 0;
-    }
-    50% {
-        opacity: 0.2;
-    }
-    100% {
-        opacity: 0;
-    }
+    0% { opacity: 0; }
+    50% { opacity: 0.2; }
+    100% { opacity: 0; }
 }
 
 @keyframes slideInOut {
@@ -130,18 +120,21 @@ body::after {
 h1 {
     color: #E2F1E7;
     font-size: 3rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1), 0 0 10px #112A46, 0 0 30px #112A46; /* 2D border effect */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1), 0 0 10px #112A46, 0 0 30px #112A46;
     margin-bottom: 2rem;
-    animation: slideInOut 6s ease-in-out infinite;
+    animation: slideInOut 4s ease-in-out infinite;
+    text-align: center; /* Added for better mobile display */
 }
-
 
 .container {
     flex-grow: 1;
     display: flex;
+    flex-direction: column; /* Changed to column for better mobile layout */
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    padding: 1rem; /* Reduced padding for mobile */
+    width: 100%; /* Added to ensure full width */
+    max-width: 800px; /* Added max-width for larger screens */
 }
 
 .game {
@@ -151,6 +144,7 @@ h1 {
     max-width: 650px;
     width: 90vmin;
     aspect-ratio: 1/1;
+    margin: 0 auto; /* Center the game grid */
 }
 
 .box {
@@ -191,8 +185,12 @@ h1 {
     margin-top: 2rem;
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap; /* Added to allow buttons to wrap on mobile */
+    justify-content: center; /* Center buttons */
+    width: 100%; /* Ensure full width */
+    padding: 0 1rem; /* Add padding to prevent edge touching */
 }
-.gamee-btn{
+.gamee-btn {
     display: inline-block;
     padding: 10px 20px;
     font-size: 1.2rem;
@@ -202,10 +200,12 @@ h1 {
     border: none;
     border-radius: 8px;
     text-decoration: none;
-    transition:background 0.5s ease-in-out, color 0.5s ease-in-out;
+    transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
     position: relative;
     overflow: hidden;
-
+    width: auto; /* Allow button to size based on content */
+    min-width: 120px; /* Ensure minimum width */
+    margin: 0.5rem; /* Add margin for spacing when wrapped */
 }
 
 .game-btn {
@@ -221,9 +221,11 @@ h1 {
     transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
     position: relative;
     overflow: hidden;
+    width: auto; /* Allow button to size based on content */
+    min-width: 120px; /* Ensure minimum width */
+    margin: 0.5rem; /* Add margin for spacing when wrapped */
 }
 
-/* Hover Effect: Background changes from left to right */
 .game-btn:hover {
     background: linear-gradient(to right, black 0%, black 100%);
     color: white;
@@ -242,6 +244,7 @@ h1 {
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
+    padding: 1rem; /* Added padding for mobile */
 }
 
 .msg-container.show {
@@ -257,6 +260,8 @@ h1 {
     transform: translateY(-50px);
     transition: transform 0.3s ease;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 90%; /* Added width for mobile */
+    max-width: 400px; /* Added max-width for larger screens */
 }
 
 .msg-container.show .msg-content {
@@ -267,6 +272,7 @@ h1 {
     color: #112A46;
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
+    word-wrap: break-word; /* Added for text wrapping */
 }
 
 @keyframes popIn {
@@ -280,20 +286,38 @@ h1 {
     to { transform: translateY(0); opacity: 1; }
 }
 
+/* Enhanced mobile responsiveness */
 @media (max-width: 600px) {
+    body {
+        padding: 1rem 0.5rem;
+    }
+
     h1 {
         font-size: 2rem;
+        margin-bottom: 1.5rem;
     }
     
     .game {
-        width: 90vw;
+        width: 95vw;
+        gap: 0.5rem;
     }
     
     .box {
-        font-size: 3rem;
+        font-size: 2.5rem; /* Reduced font size for mobile */
     }
     
     #msg {
-        font-size: 2rem;
+        font-size: 1.8rem;
+    }
+
+    .game-btn {
+        padding: 8px 16px;
+        font-size: 1rem;
+        min-width: 100px;
+    }
+
+    .controls {
+        padding: 0 0.5rem;
+        margin-top: 1.5rem;
     }
 }
