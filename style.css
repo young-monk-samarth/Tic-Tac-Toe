@@ -1,0 +1,299 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #E2F1E7, #8DA4EA, #97ACF7, #E2F1E7);
+    background-size: 300% 300%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    animation: gradientShift 10s ease-in-out infinite alternate, waveEffect 4s ease-in-out infinite;
+    filter: brightness(1) saturate(3);
+    position: relative;
+    overflow: hidden;
+}
+
+/* neat effect */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+        background: linear-gradient(135deg, #E2F1E7, #8DA4EA, #97ACF7, #E2F1E7);
+    }
+    25% {
+        background-position: 25% 50%;
+        background: linear-gradient(135deg, #97ACF7, #E2F1E7, #8DA4EA, #bde0fe);
+    }
+    50% {
+        background-position: 50% 50%;
+        background: linear-gradient(135deg, #8DA4EA, #bde0fe, #E2F1E7, #97ACF7);
+    }
+    75% {
+        background-position: 75% 50%;
+        background: linear-gradient(135deg, #bde0fe, #97ACF7, #8DA4EA, #E2F1E7);
+    }
+    100% {
+        background-position: 100% 50%;
+        background: linear-gradient(135deg, #E2F1E7, #8DA4EA, #97ACF7, #E2F1E7);
+    }
+}
+
+/* Simulate wave effect */
+@keyframes waveEffect {
+    0% {
+        transform: translateY(-6px) translateX(-4px);
+    }
+    50% {
+        transform: translateY(6px) translateX(4px);
+    }
+    100% {
+        transform: translateY(-6px) translateX(-4px);
+    }
+}
+
+/* Shadows & highlights */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.1) 100%);
+    mix-blend-mode: overlay;
+    opacity: 0.4;
+    z-index: -1;
+}
+
+/* Color blending effect */
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 63, 255, 1);
+    mix-blend-mode: soft-light;
+    opacity: 0.5;
+    z-index: -2;
+}
+
+/* Optional: Add grain effect */
+.grain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/noise.png');
+    opacity: 0;
+    mix-blend-mode: multiply;
+    animation: grainMovement 10s linear infinite;
+    z-index: -3;
+}
+
+/* Grain animation */
+@keyframes grainMovement {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes slideInOut {
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    50% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100px);
+        opacity: 0;
+    }
+}
+
+h1 {
+    color: #E2F1E7;
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1), 0 0 10px #112A46, 0 0 30px #112A46; /* 2D border effect */
+    margin-bottom: 2rem;
+    animation: slideInOut 6s ease-in-out infinite;
+}
+
+
+.container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.game {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    max-width: 650px;
+    width: 90vmin;
+    aspect-ratio: 1/1;
+}
+
+.box {
+    background: #b6c5d9;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    aspect-ratio: 1/1;
+    border: none;
+    box-shadow: 0 8px 15px rgba(13, 28, 52, 0.2);
+}
+
+.box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 20px rgba(13, 28, 52, 0.3);
+}
+
+.box:active {
+    transform: translateY(0);
+}
+
+.box[data-mark="O"] {
+    color: #112A46;
+    animation: popIn 0.3s ease;
+}
+
+.box[data-mark="X"] {
+    color: #380606;
+    animation: popIn 0.3s ease;
+}
+
+.controls {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+.gamee-btn{
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #112A46;
+    background: #b6c5d9;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    transition:background 0.5s ease-in-out, color 0.5s ease-in-out;
+    position: relative;
+    overflow: hidden;
+
+}
+
+.game-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #112A46;
+    background: #b6c5d9;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover Effect: Background changes from left to right */
+.game-btn:hover {
+    background: linear-gradient(to right, black 0%, black 100%);
+    color: white;
+}
+
+.msg-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.msg-container.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.msg-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    transform: translateY(-50px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.msg-container.show .msg-content {
+    transform: translateY(0);
+}
+
+#msg {
+    color: #112A46;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0); }
+    90% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .game {
+        width: 90vw;
+    }
+    
+    .box {
+        font-size: 3rem;
+    }
+    
+    #msg {
+        font-size: 2rem;
+    }
+}
