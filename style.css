@@ -67,11 +67,6 @@
     }
 
     @keyframes grainMovement {
-        0%, 100% { opacity: 0; }
-        50% { opacity: 0.2; }
-    }
-
-    @keyframes grainMovement {
     0% {
         opacity: 0;
     }
